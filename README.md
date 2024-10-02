@@ -1,4 +1,11 @@
-# Packer Images
+# Packer Images for Ubuntu
+
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![GitHub license](https://img.shields.io/github/license/bcochofel/packer-proxmox-ubuntu.svg)](https://github.com/bcochofel/packer-proxmox-ubuntu/blob/master/LICENSE)
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/bcochofel/packer-proxmox-ubuntu)](https://github.com/bcochofel/packer-proxmox-ubuntu/tags)
+[![GitHub issues](https://img.shields.io/github/issues/bcochofel/packer-proxmox-ubuntu.svg)](https://github.com/bcochofel/packer-proxmox-ubuntu/issues/)
+[![GitHub forks](https://img.shields.io/github/forks/bcochofel/packer-proxmox-ubuntu.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/bcochofel/packer-proxmox-ubuntu/network/)
+[![GitHub stars](https://img.shields.io/github/stars/bcochofel/packer-proxmox-ubuntu.svg?style=social&label=Star&maxAge=2592000)](https://github.com/bcochofel/packer-proxmox-ubuntu/stargazers/)
 
 ## Proxmox Setup
 
@@ -18,7 +25,7 @@
 
 ## Build
 
-Create the ```../secrets.pkrvars.hcl``` file with values from previous steps
+Create the ```secrets.pkrvars.hcl``` file with values from previous steps
 
 ```hcl
 proxmox_url = "<your proxmox api url>"
@@ -30,7 +37,14 @@ To build proxmox images run
 
 ```bash
 cd <linux distribution>
-packer build -var-file=../secrets.pkrvars.hcl proxmox-<linux distribution>.pkr.hcl
+packer build --var-file=../secrets.pkrvars.hcl proxmox-<linux distribution>.pkr.hcl
+```
+
+For instance, to generate the template image for Ubuntu Jammy Server
+
+```bash
+cd ubuntu-jammy-server
+packer build --var-file=../secrets.pkrvars.hcl proxmox-ubuntu.pkr.hcl
 ```
 
 ## Running Packer from WSL2
@@ -62,10 +76,9 @@ and them create Firewall rules from a powershell terminal (admin)
 The following sequence creates a Firewall Rule to allow TCP Inbound traffic through ports 8000-9000 (the default ports packer uses for the webserver)
 
 ```shell
-Get-NetFirewallHyperVVMCreator
 wsl --version
+Get-NetFirewallHyperVVMCreator
 Get-NetFirewallHyperVVMSetting -PolicyStore ActiveStore -Name '{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}'
-Get-NetFirewallHyperVRule -VMCreatorId '{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}'
 New-NetFirewallHyperVRule -Name Packer-Inbound -DisplayName "Packer Inbound range" -Direction Inbound -VMCreatorId '{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}' -Protocol TCP -LocalPorts 8000-9000
 Get-NetFirewallHyperVRule -VMCreatorId '{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}'
 ```
