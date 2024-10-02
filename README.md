@@ -91,3 +91,4 @@ Check references for more information
 - [Configure Hyper-V firewall](https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/hyper-v-firewall)
 - [Packer Proxmox](https://developer.hashicorp.com/packer/integrations/hashicorp/proxmox)
 - [Proxmox: Create a cloud-init Template VM with Packer](https://ronamosa.io/docs/engineer/LAB/proxmox-packer-vm/)
+- [Ubuntu autoinstall](https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html)
