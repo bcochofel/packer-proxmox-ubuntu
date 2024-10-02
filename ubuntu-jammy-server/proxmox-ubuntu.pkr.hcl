@@ -110,7 +110,7 @@ build {
   name    = "ubuntu-server-jammy"
   sources = ["source.proxmox-iso.ubuntu"]
 
-  # Provisioning the VM Template for Cloud-Init Integration in Proxmox #1
+  # sealing virtual machine
   provisioner "shell" {
     inline = [
       "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done",
@@ -126,19 +126,18 @@ build {
     ]
   }
 
-  # Provisioning the VM Template for Cloud-Init Integration in Proxmox #2
+  # cloud-init integration in Proxmox
   provisioner "file" {
     source      = "files/99-pve.cfg"
     destination = "/tmp/99-pve.cfg"
   }
 
-  # Provisioning the VM Template for Cloud-Init Integration in Proxmox #3
+  # cloud-init integration in Proxmox
   provisioner "shell" {
     inline = ["sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg"]
   }
 
-
-  # Provisioning the VM Template with Docker Installation #4
+  # docker installation
   provisioner "shell" {
     inline = [
       "sudo apt-get install -y ca-certificates curl gnupg lsb-release",
