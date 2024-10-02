@@ -1,7 +1,7 @@
 #cloud-config
 autoinstall:
   version: 1
-  locale: en_US
+  locale: "en_US.UTF-8"
   keyboard:
     layout: us
     variant: intl
@@ -14,7 +14,9 @@ autoinstall:
   packages:
     - qemu-guest-agent
     - sudo
-    - zsh
+    - vim
+    - mc
+    - unzip
   storage:
     layout:
       name: lvm
@@ -23,11 +25,13 @@ autoinstall:
   user-data:
     package_upgrade: false
     timezone: Europe/Lisbon
+    groups:
+      - docker
     users:
       - name: bcochofel
-        groups: [sudo]
+        groups: [sudo, docker]
         lock-passwd: false
         sudo: ALL=(ALL) NOPASSWD:ALL
-        shell: /bin/zsh
+        shell: /bin/bash
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEZGQwHOs8V9ndmLn3NuQXxuD0Ht4zaz+c6/WaEMAA6S bcochofel@NUC12WSHi7
