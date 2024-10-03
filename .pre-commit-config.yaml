@@ -8,8 +8,3 @@ repos:
       - id: detect-private-key
       - id: check-merge-conflict
       - id: no-commit-to-branch
-  - repo: https://github.com/cisagov/pre-commit-packer
-    rev: v0.1.0
-    hooks:
-      - id: packer_fmt
-#      - id: packer_validate

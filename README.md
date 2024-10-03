@@ -1,11 +1,12 @@
 # Packer Images for Ubuntu
-
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![GitHub license](https://img.shields.io/github/license/bcochofel/packer-proxmox-ubuntu.svg)](https://github.com/bcochofel/packer-proxmox-ubuntu/blob/master/LICENSE)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/bcochofel/packer-proxmox-ubuntu)](https://github.com/bcochofel/packer-proxmox-ubuntu/tags)
 [![GitHub issues](https://img.shields.io/github/issues/bcochofel/packer-proxmox-ubuntu.svg)](https://github.com/bcochofel/packer-proxmox-ubuntu/issues/)
 [![GitHub forks](https://img.shields.io/github/forks/bcochofel/packer-proxmox-ubuntu.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/bcochofel/packer-proxmox-ubuntu/network/)
 [![GitHub stars](https://img.shields.io/github/stars/bcochofel/packer-proxmox-ubuntu.svg?style=social&label=Star&maxAge=2592000)](https://github.com/bcochofel/packer-proxmox-ubuntu/stargazers/)
+
+Build Ubuntu Images for Proxmox using Packer
 
 ## Proxmox Setup
 
@@ -33,18 +34,10 @@ proxmox_username = "<your proxmox user>"
 proxmox_token = "<proxmox user api token>"
 ```
 
-To build proxmox images run
+To build proxmox images for Ubuntu Server run (it will build all the sources defined in the folder)
 
 ```bash
-cd <linux distribution>
-packer build --var-file=../secrets.pkrvars.hcl proxmox-<linux distribution>.pkr.hcl
-```
-
-For instance, to generate the template image for Ubuntu Jammy Server
-
-```bash
-cd ubuntu-jammy-server
-packer build --var-file=../secrets.pkrvars.hcl proxmox-ubuntu.pkr.hcl
+packer build --var-file=secrets.pkrvars.hcl ubuntu-server/
 ```
 
 ## Running Packer from WSL2
