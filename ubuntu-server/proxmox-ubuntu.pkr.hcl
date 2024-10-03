@@ -180,22 +180,18 @@ build {
 
   # cloud-init integration in Proxmox
   provisioner "file" {
-    source      = "${path.root}/files/${local.pve_cfg}"
-    destination = "/tmp/${local.pve_cfg}"
+    source      = "${path.root}/files/99-pve.cfg"
+    destination = "/tmp/99-pve.cfg"
   }
 
   # cloud-init integration in Proxmox
   provisioner "shell" {
-    inline = ["sudo install -m 644 -o root -g root /tmp/${local.pve_cfg} /etc/cloud/cloud.cfg.d/${local.pve_cfg}"]
+    inline = ["sudo install -m 644 -o root -g root /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg"]
   }
 
   # disable IPv6
   provisioner "shell" {
-    inline = [
-      "sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 quiet splash ipv6.disable=1"/' /etc/default/grub",
-      "sudo sed -i 's/GRUB_CMDLINE_LINUX="\(.*\)"/GRUB_CMDLINE_LINUX="\1 ipv6.disable=1"/' /etc/default/grub",
-      "sudo update-grub"
-    ]
+    script = "${path.root}/scripts/disable-ipv6.sh"
   }
 
   # docker installation
