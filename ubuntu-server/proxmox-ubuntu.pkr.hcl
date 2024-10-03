@@ -186,7 +186,21 @@ build {
 
   # cloud-init integration in Proxmox
   provisioner "shell" {
-    inline = ["sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg"]
+    inline = ["sudo install -m 644 -o root -g root /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg"]
+  }
+
+  # disable IPv6 using sysctl
+  provisioner "file" {
+    source      = "${path.root}/files/10-disable-ipv6.conf"
+    destination = "/tmp/10-disable-ipv6.conf"
+  }
+
+  # disable IPv6
+  provisioner "shell" {
+    inline = [
+      "sudo install -m 644 -o root -g root /tmp/99-pve.cfg /etc/sysctl.d/10-disable-ipv6.conf",
+      "sudo sysctl -p"
+    ]
   }
 
   # docker installation
