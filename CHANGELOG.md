@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.0.1...1.1.0) (2024-10-03)
+
+### Features
+
+* refactor for multiple images ([a0a8aee](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/a0a8aee0b9db0dd16cd9a15339954fa1718431a3))
+
 ## [1.0.1](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.0.0...1.0.1) (2024-10-02)
 
 ### Bug Fixes
