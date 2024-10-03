@@ -21,4 +21,8 @@ locals {
   # cloud-init settings
   ci              = true
   ci_storage_pool = "local-lvm"
+
+  # files
+  pve_cfg      = "99-pve.cfg"
+  disable_ipv6 = "10-disable-ipv6.conf"
 }

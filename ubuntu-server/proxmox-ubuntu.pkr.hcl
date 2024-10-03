@@ -180,26 +180,21 @@ build {
 
   # cloud-init integration in Proxmox
   provisioner "file" {
-    source      = "${path.root}/files/99-pve.cfg"
-    destination = "/tmp/99-pve.cfg"
+    source      = "${path.root}/files/${local.pve_cfg}"
+    destination = "/tmp/${local.pve_cfg}"
   }
 
   # cloud-init integration in Proxmox
   provisioner "shell" {
-    inline = ["sudo install -m 644 -o root -g root /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg"]
-  }
-
-  # disable IPv6 using sysctl
-  provisioner "file" {
-    source      = "${path.root}/files/10-disable-ipv6.conf"
-    destination = "/tmp/10-disable-ipv6.conf"
+    inline = ["sudo install -m 644 -o root -g root /tmp/${local.pve_cfg} /etc/cloud/cloud.cfg.d/${local.pve_cfg}"]
   }
 
   # disable IPv6
   provisioner "shell" {
     inline = [
-      "sudo install -m 644 -o root -g root /tmp/99-pve.cfg /etc/sysctl.d/10-disable-ipv6.conf",
-      "sudo sysctl -p"
+      "sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 quiet splash ipv6.disable=1"/' /etc/default/grub",
+      "sudo sed -i 's/GRUB_CMDLINE_LINUX="\(.*\)"/GRUB_CMDLINE_LINUX="\1 ipv6.disable=1"/' /etc/default/grub",
+      "sudo update-grub"
     ]
   }
 
