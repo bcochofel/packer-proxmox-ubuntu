@@ -10,7 +10,7 @@ locals {
   # disks settings
   scsi_controller = "virtio-scsi-single"
   type            = "scsi"
-  disk_size       = "32G"
+  disk_size       = "10G"
   format          = "raw"
   storage_pool    = "local-lvm"
 
