@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.1.0...1.2.0) (2024-10-03)
+
+### Features
+
+* Disable IPv6 ([3ba5bea](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/3ba5bead973cebe8059ca7a02a76ade08b03a169))
+* Disk size decrease to 10GB ([1c32ad4](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/1c32ad42c39f16067c8860ff32318582154133ce))
+
+### Bug Fixes
+
+* Disable IPv6 using GRUB ([e37f726](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/e37f72694419a6039f4fd6f15d7f5fc4d79fa62d))
+* Disable IPv6 using GRUB ([08a20ac](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/08a20ac4de9e36683166207c04364f7787cf0921))
+
 ## [1.1.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.0.1...1.1.0) (2024-10-03)
 
 ### Features
