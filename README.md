@@ -10,28 +10,46 @@ Build Ubuntu Images for Proxmox using Packer
 
 ## Proxmox Setup
 
-### Create Packer User
+Create Packer User/Group/<Pool> and set permissions
 
-* login to your proxmox web GUI as root
-* add packer user (ve)
-* create group Packer
-* add Group Permissions (PVEAdmin) to group Packer
-* add user packer to group Packer
+```bash
+# create role and set privileges
+pveum role add PackerProv -privs  "Pool.Audit Datastore.AllocateSpace Datastore.Allocate Datastore.Audit VM.Allocate VM.Audit VM.Backup VM.Clone VM.Config.CDROM VM.Config.CPU VM.Config.Cloudinit VM.Config.Disk VM.Config.HWType VM.Config.Memory VM.Config.Network VM.Config.Options VM.Console VM.Migrate VM.Monitor VM.PowerMgmt VM.Snapshot VM.Snapshot.Rollback SDN.Use"
+# create user
+pveum user add packer@pve --password Pack3rPr0v1s10n1ng
+# set permissions
+pveum aclmod / -user packer@pve -role PackerProv
 
-### Create API Token
+# set permissions (only for the resource pool)
+# create resource pool
+#pveum pool add packer --comment "Hashicorp Packer Images"
+#pveum aclmod /pool/packer -user packer@pve -role PackerProv
+```
 
-* login to your proxmox web GUI as root
-* Use new packer user, API Token, no expiry, copy secret.
-* ensure Privilege Separation is not checked, otherwise this token doesn't get the packer users group permissions.
+Create API Token
+
+```bash
+pveum user token add packer@pve packer-automation --privsep 0
+```
+
+**Note:** The above command will output the values you need to use in to authenticate
+
+## Validate
+
+You can validate the template using
+
+```bash
+packer validate --var-file=secrets.pkrvars.hcl ubuntu-server/
+```
 
 ## Build
 
 Create the ```secrets.pkrvars.hcl``` file with values from previous steps
 
 ```hcl
-proxmox_url = "<your proxmox api url>"
-proxmox_username = "<your proxmox user>"
-proxmox_token = "<proxmox user api token>"
+pm_api_url = "<your proxmox api url>"
+pm_api_token_id = "<your proxmox user>"
+pm_api_token_secret = "<proxmox user api token>"
 ```
 
 To build proxmox images for Ubuntu Server run (it will build all the sources defined in the folder)
@@ -83,5 +101,7 @@ Check references for more information
 - [Accessing Network Applications with WSL](https://learn.microsoft.com/en-us/windows/wsl/networking)
 - [Configure Hyper-V firewall](https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/hyper-v-firewall)
 - [Packer Proxmox](https://developer.hashicorp.com/packer/integrations/hashicorp/proxmox)
+- [Proxmox pveum CLI](https://pve.proxmox.com/pve-docs/pveum.1.html)
+- [Packer User/Group and Permissions](https://github.com/hashicorp/packer-plugin-proxmox/issues/184)
 - [Proxmox: Create a cloud-init Template VM with Packer](https://ronamosa.io/docs/engineer/LAB/proxmox-packer-vm/)
 - [Ubuntu autoinstall](https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html)
