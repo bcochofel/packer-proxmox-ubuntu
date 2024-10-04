@@ -2,9 +2,9 @@
 source "proxmox-iso" "jammy" {
 
   # Proxmox Connection Settings
-  proxmox_url = "${var.proxmox_url}"
-  username    = "${var.proxmox_username}"
-  token       = "${var.proxmox_token}"
+  proxmox_url = "${var.pm_api_url}"
+  username    = "${var.pm_api_token_id}"
+  token       = "${var.pm_api_token_secret}"
 
   insecure_skip_tls_verify = true
 
@@ -81,9 +81,9 @@ source "proxmox-iso" "jammy" {
 source "proxmox-iso" "noble" {
 
   # Proxmox Connection Settings
-  proxmox_url = "${var.proxmox_url}"
-  username    = "${var.proxmox_username}"
-  token       = "${var.proxmox_token}"
+  proxmox_url = "${var.pm_api_url}"
+  username    = "${var.pm_api_token_id}"
+  token       = "${var.pm_api_token_secret}"
 
   insecure_skip_tls_verify = true
 
