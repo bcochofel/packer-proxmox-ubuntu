@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.2.0...1.3.0) (2024-10-04)
+
+### Features
+
+* Change user/group create and permissions, and added documentation ([20f91c2](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/20f91c296aa57ec67d7226030ed9ab376535c223))
+
 ## [1.2.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.1.0...1.2.0) (2024-10-03)
 
 ### Features
