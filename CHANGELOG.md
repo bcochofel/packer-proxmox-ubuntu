@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.3.0...1.4.0) (2024-10-05)
+
+### Features
+
+* Improve Cloud-Init support ([9bd3012](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/9bd30122b5e46d388dcd89978622fa3fa79c2a59))
+* Improve Cloud-Init support ([c4fc4cd](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/c4fc4cd4a04f896b37734d1f02126d4269965ccd))
+
 ## [1.3.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.2.0...1.3.0) (2024-10-04)
 
 ### Features
