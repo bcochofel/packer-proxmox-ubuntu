@@ -6,6 +6,7 @@ variable "pm_api_url" {
 variable "pm_api_token_id" {
   type        = string
   description = "Username when authenticating to Proxmox, including the realm."
+  sensitive   = true
 }
 
 variable "pm_api_token_secret" {
