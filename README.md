@@ -108,3 +108,4 @@ Check references for more information
 - [Ubuntu autoinstall](https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html)
 - [Accessing Network Applications with WSL](https://learn.microsoft.com/en-us/windows/wsl/networking)
 - [Configure Hyper-V firewall](https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/hyper-v-firewall)
+- [Chrian Lempa boilerplates](https://github.com/ChristianLempa/boilerplates)

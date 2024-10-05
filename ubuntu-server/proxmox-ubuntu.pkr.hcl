@@ -48,15 +48,6 @@ source "proxmox-iso" "jammy" {
     firewall = local.firewall
   }
 
-  # Serials
-  serials = ["socket"]
-
-  # VGA
-  vga {
-    type   = "serial0"
-    memory = 32
-  }
-
   # VM cloud-init Settings
   cloud_init              = local.ci
   cloud_init_storage_pool = local.ci_storage_pool
@@ -138,15 +129,6 @@ source "proxmox-iso" "noble" {
   network_adapters {
     bridge   = local.bridge
     firewall = local.firewall
-  }
-
-  # Serials
-  serials = ["socket"]
-
-  # VGA
-  vga {
-    type   = "serial0"
-    memory = 32
   }
 
   # VM cloud-init Settings
