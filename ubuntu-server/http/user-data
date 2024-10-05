@@ -17,6 +17,10 @@ autoinstall:
     - vim
     - mc
     - unzip
+    - curl
+    - gnupg
+    - ca-certificates
+    - lsb-release
   storage:
     layout:
       name: lvm

@@ -98,10 +98,14 @@ Check references for more information
 
 ## References
 
+- [Proxmox VE Documentation](https://pve.proxmox.com/pve-docs/)
+- [Proxmox Cloud-Init Support](https://pve.proxmox.com/wiki/Cloud-Init_Support)
+- [Proxmox Cloud-Init FAQ](https://pve.proxmox.com/wiki/Cloud-Init_FAQ)
+- [Proxmox Packer Builder](https://developer.hashicorp.com/packer/integrations/hashicorp/proxmox)
+- [Packer User/Group and Permissions](https://github.com/hashicorp/packer-plugin-proxmox/issues/184)
+- [Cloud-Init Documentation](https://cloudinit.readthedocs.io/en/latest/reference/index.html)
+- [Ubuntu Cloud Images](https://cloud-images.ubuntu.com/)
+- [Ubuntu autoinstall](https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html)
 - [Accessing Network Applications with WSL](https://learn.microsoft.com/en-us/windows/wsl/networking)
 - [Configure Hyper-V firewall](https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/hyper-v-firewall)
-- [Packer Proxmox](https://developer.hashicorp.com/packer/integrations/hashicorp/proxmox)
-- [Proxmox pveum CLI](https://pve.proxmox.com/pve-docs/pveum.1.html)
-- [Packer User/Group and Permissions](https://github.com/hashicorp/packer-plugin-proxmox/issues/184)
-- [Proxmox: Create a cloud-init Template VM with Packer](https://ronamosa.io/docs/engineer/LAB/proxmox-packer-vm/)
-- [Ubuntu autoinstall](https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html)
+- [Chrian Lempa boilerplates](https://github.com/ChristianLempa/boilerplates)

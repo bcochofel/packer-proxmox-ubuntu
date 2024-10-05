@@ -8,7 +8,8 @@ source "proxmox-iso" "jammy" {
 
   insecure_skip_tls_verify = true
 
-  # VM name
+  # VM ID/name
+  vm_id                = 5000
   vm_name              = "ubuntu-jammy-tmpl"
   template_description = "Ubuntu Jammy Server Image"
 
@@ -75,6 +76,9 @@ source "proxmox-iso" "jammy" {
 
   # Raise the timeout, when installation takes longer
   ssh_timeout = "20m"
+
+  # Set tags
+  tags = "ubuntu;ubuntu-jammy;template"
 }
 
 # Ubuntu Noble template
@@ -87,7 +91,8 @@ source "proxmox-iso" "noble" {
 
   insecure_skip_tls_verify = true
 
-  # VM name
+  # VM ID/name
+  vm_id                = 5001
   vm_name              = "ubuntu-noble-tmpl"
   template_description = "Ubuntu Noble Server Image"
 
@@ -154,7 +159,11 @@ source "proxmox-iso" "noble" {
 
   # Raise the timeout, when installation takes longer
   ssh_timeout = "20m"
+
+  # Set tags
+  tags = "ubuntu;ubuntu-noble;template"
 }
+
 # Build Definition to create the VM Template
 build {
   sources = [
@@ -167,41 +176,21 @@ build {
     inline = [
       "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done",
       "sudo rm /etc/ssh/ssh_host_*",
-      "sudo truncate -s 0 /etc/machine-id",
       "sudo apt -y autoremove --purge",
       "sudo apt -y clean",
       "sudo apt -y autoclean",
-      "sudo cloud-init clean",
-      "sudo rm -f /etc/cloud/cloud.cfg.d/subiquity-disable-cloudinit-networking.cfg",
-      "sudo rm -f /etc/netplan/00-installer-config.yaml",
+      "sudo cloud-init clean --logs --machine-id",
       "sudo sync"
     ]
   }
 
-  # cloud-init integration in Proxmox
-  provisioner "file" {
-    source      = "${path.root}/files/99-pve.cfg"
-    destination = "/tmp/99-pve.cfg"
-  }
-
-  # cloud-init integration in Proxmox
-  provisioner "shell" {
-    inline = ["sudo install -m 644 -o root -g root /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg"]
-  }
-
   # disable IPv6
   provisioner "shell" {
-    script = "${path.root}/scripts/disable-ipv6.sh"
+    script = "${path.root}/scripts/disable_ipv6.sh"
   }
 
   # docker installation
   provisioner "shell" {
-    inline = [
-      "sudo apt-get install -y ca-certificates curl gnupg lsb-release",
-      "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg",
-      "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null",
-      "sudo apt-get -y update",
-      "sudo apt-get install -y docker-ce docker-ce-cli containerd.io"
-    ]
+    script = "${path.root}/scripts/install_docker.sh"
   }
 }
