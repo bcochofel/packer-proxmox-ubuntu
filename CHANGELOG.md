@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.4.0...1.5.0) (2024-10-06)
+
+### Features
+
+* Added docker-compose support ([63021e1](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/63021e13fe038d4fc41fe5355a8a95fc48313cf3))
+
 ## [1.4.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.3.0...1.4.0) (2024-10-05)
 
 ### Features
