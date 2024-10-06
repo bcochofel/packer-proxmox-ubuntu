@@ -39,3 +39,4 @@ autoinstall:
         shell: /bin/bash
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEZGQwHOs8V9ndmLn3NuQXxuD0Ht4zaz+c6/WaEMAA6S bcochofel@NUC12WSHi7
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4ljT5iXt1VgWML2ef+2Go6cN07gZLhl+hBZZhU9xYc bruno cochofel@NUC12WSHi7
