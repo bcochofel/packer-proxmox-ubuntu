@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.5.0...1.6.0) (2024-10-06)
+
+### Features
+
+* Added ssh keys for Windows ([bebc75d](https://github.com/bcochofel/packer-proxmox-ubuntu/commit/bebc75d3b35398a9a29bf584eb969cda5080fe0c))
+
 ## [1.5.0](https://github.com/bcochofel/packer-proxmox-ubuntu/compare/1.4.0...1.5.0) (2024-10-06)
 
 ### Features
