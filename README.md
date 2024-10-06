@@ -39,12 +39,12 @@ pveum user token add packer@pve packer-automation --privsep 0
 You can validate the template using
 
 ```bash
-packer validate --var-file=secrets.pkrvars.hcl ubuntu-server/
+packer validate ubuntu-server/
 ```
 
 ## Build
 
-Create the ```secrets.pkrvars.hcl``` file with values from previous steps
+Create the ```ubuntu-server/secrets.auto.pkrvars.hcl``` file with values from previous steps
 
 ```hcl
 pm_api_url = "<your proxmox api url>"
@@ -55,7 +55,7 @@ pm_api_token_secret = "<proxmox user api token>"
 To build proxmox images for Ubuntu Server run (it will build all the sources defined in the folder)
 
 ```bash
-packer build --var-file=secrets.pkrvars.hcl ubuntu-server/
+packer build ubuntu-server/
 ```
 
 ## Running Packer from WSL2
